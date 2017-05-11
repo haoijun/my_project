@@ -1,0 +1,95 @@
+<% include ../layout/header.html%>
+
+<div id="main">
+  
+<% include ../layout/sidebar.html%>
+
+
+<div id="content">
+  <div class="panel">
+    <div class="header">
+      <ul class="breadcrumb">
+        <li><a href="/">主页</a><span class="divider">/</span></li>
+        <li class="active">设置</li>
+      </ul>
+    </div>
+    <div class="inner">  
+     
+      <form id="setting_form" class="form-horizontal" action="/users/dosetings" method="post">
+        <div class="control-group">
+          <label class="control-label" for="name">用户名</label>
+
+          <div class="controls">
+            <input class="input-xlarge readonly" id="name"  size="30" type="text" readonly="true" value="<%=user.username%>">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="email">电子邮件</label>
+
+          <div class="controls">
+            <input class="input-xlarge readonly" id="email" size="30" type="text" readonly="true" value="<%=user.email%>">
+
+          </div>
+        </div>
+       	<div class="control-group">
+          <label class="control-label" for="imgsrc">上传头像</label>
+          <div class="controls">
+            <input  id="imgsrc"  type="file" style="box-shadow:0 0 0" name="up_file">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="signature">个性签名</label>
+
+          <div class="controls">
+            <textarea class="input-xlarge" id="signature" name="mark" style="height:130px"><%= user.mark?user.mark:"这家伙很懒,什么个性签名都没有留下。"%>
+            </textarea>
+          </div>
+        </div>
+   
+
+        <div class="form-actions">
+          <input type="submit" class="span-primary submit_btn" value="保存设置">
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="header">
+      <span class="col_fade">更改密码</span>
+    </div>
+    <div class="inner">
+      <form id="change_pass_form" class="form-horizontal" action="/users/domima" method="post">
+       <%if(errMsg.length){%>
+          <div class="alert alert-danger fade in text-align">
+          <%= errMsg%>
+                </div>
+       <%}%>
+        <div class="control-group">
+          <label class="control-label" for="old_pass">当前密码</label>
+
+          <div class="controls">
+            <input class="input-xlarge" type="password" id="old_pass" name="old_pass" size="30">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="new_pass">新密码</label>
+
+          <div class="controls">
+            <input class="input-xlarge" type="password" id="new_pass" name="new_pass" size="30">
+          </div>
+        </div>
+        <input type="hidden" id="action" name="action" value="change_password">
+        <input type="hidden" name="_csrf" value="pWNO1DnR-rRgDYIbaiaTgB2CDwgbWOy9ewNw">
+
+        <div class="form-actions">
+          <input type="submit" class="span-primary submit_btn" data-loading-text="更改中.." value="更改密码">
+        </div>
+      </form>
+    </div>
+  </div>
+
+  
+
+</div>
+<% include ../layout/footer.html%>

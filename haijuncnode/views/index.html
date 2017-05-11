@@ -1,0 +1,117 @@
+<% include layout/header.html%>
+<div id="main">
+
+<!-- 个人信息部分 -->
+  <% include layout/sidebar.html%>
+
+
+<div id="content">
+  <div class="panel">
+    <div class="header">
+      
+        <a href="/?tab=all" class="topic-tab current-tab">全部</a>
+      
+        <a href="/?tab=good" class="topic-tab ">精华</a>
+      
+        <a href="/?tab=share" class="topic-tab ">分享</a>
+      
+        <a href="/?tab=ask" class="topic-tab ">问答</a>
+      
+        <a href="/?tab=job  " class="topic-tab ">招聘</a>
+      
+    </div>
+    
+    <div class="inner no-padding">
+      <div id="topic_list">
+
+
+<!-- 数据循环区域 -->
+<%data.forEach(function(item,index){%>
+<div class="cell">
+
+            <a class="user_avatar pull-left" href="/user/fengmk2">
+            <img src="/img/default.png" title="fengmk2">
+            </a>
+
+            <span class="reply_count pull-left">
+            <span class="count_of_replies" title="回复数">
+            <%=item.reply.length%>
+            </span>
+            <span class="count_seperator">/</span>
+            <span class="count_of_visits" title="点击数">
+            <%=item.viewnum%>
+            </span>
+            </span>
+
+
+            <a class="last_time pull-right" href="/topic/58e607b0ddee72813eb22323#58f87f3631e8c2bb1c3dcbf8">
+            <%if(user){%> 
+                <img class="user_small_avatar" src="/img/<%=user.userpic?user.userpic:"default.png"%>">
+            <%}else{%>
+                <img class="user_small_avatar" src="/img/default.png">
+            <%}%>
+            
+            <span class="last_active_time">5 小时前</span>
+            </a>
+
+
+
+            <div class="topic_title_wrapper">
+
+
+            <span class="put_top">置顶</span>
+
+
+
+            <a class="topic_title" href="/topic/show/<%=item._id%>" title="cnpm@5 beta 测试招募">
+           <%=item.topicname%>
+            </a>
+            </div>
+        </div>
+
+<%})%>
+        
+
+</div>
+  <div class="pagination" current_page="1">
+      <ul>
+
+
+          <li class="disabled"><a>«</a></li>
+
+          <li class="disabled active"><a>1</a></li>
+
+
+          <li><a href="/?tab=all&amp;page=2">2</a></li>
+
+
+          <li><a href="/?tab=all&amp;page=3">3</a></li>
+
+
+          <li><a href="/?tab=all&amp;page=4">4</a></li>
+
+
+          <li><a href="/?tab=all&amp;page=5">5</a></li>
+
+
+          <li><a>...</a></li>
+
+
+
+          <li><a href="/?tab=all&amp;page=522">»</a></li>
+
+      </ul>
+  </div>
+
+
+    </div>
+    
+  </div>
+</div>
+
+</div>
+
+
+<div id="backtotop" style="top: 518px; right: 0px;">回到顶部</div>
+
+<% include layout/footer.html%>

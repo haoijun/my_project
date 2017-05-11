@@ -1,0 +1,199 @@
+
+<% include ../layout/header.html%>
+<!-- 1.引入文件 -->
+<script src="/js/ueditor/ueditor.config.js"></script>
+<script src="/js/ueditor/ueditor.all.min.js"></script>
+<!-- 引入语言包 -->
+<script src="/js/ueditor/lang/zh-cn/zh-cn.js"></script>
+<div id="main">
+  <div id="sidebar">
+  <div class="panel">
+    <div class="header">
+      <span class="col_fade">作者</span>
+    </div>
+    <div class="inner">
+      <div class="user_card">
+  <div>
+    <a class="user_avatar" href="/user/Mesea">
+      <img src="https://avatars2.githubusercontent.com/u/24809247?v=3&amp;s=120" title="Mesea">
+    </a>
+    <span class="user_name"><a class="dark" href="/user/Mesea"><%=data.uid.username%></a></span>
+
+    <div class="board clearfix">
+      <div class="floor">
+        <span class="big">积分: <%=data.uid.gold%> </span>
+      </div>
+    </div>
+    <div class="space clearfix"></div>
+    <span class="signature">
+        “<%= data.uid.mark?data.uid.mark:"这家伙很懒，什么个性签名都没有留下。"%> ”
+    </span>
+  </div>
+</div>
+    </div>
+  </div>  
+<div class="panel">
+ 
+</div>
+
+  
+
+  <div class="panel">
+    <div class="header">
+      <span class="col_fade">作者其它话题</span>
+    </div>
+    <div class="inner">
+      
+      <p>无</p>
+      
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="header">
+      <span class="col_fade">无人回复的话题</span>
+    </div>
+    <div class="inner">
+      
+      <ul class="unstyled">
+        <li>
+  <div><a class="dark topic_title" href="/topic/590d48ba3504ce1c2ac45908" title="node中挂载了全局变量，载JavaScript重怎么使用，没使用ajax">node中挂载了全局变量，载JavaScript重怎么使用，没使用ajax</a>
+  </div>
+</li>
+<li>
+  <div><a class="dark topic_title" href="/topic/590c35f6ba8670562a40ed3b" title="使用webpack的require.context实现路由“去中心化”管理">使用webpack的require.context实现路由“去中心化”管理</a>
+  </div>
+</li>
+<li>
+  <div><a class="dark topic_title" href="/topic/590bf4fe11bdaf96035d8bc4" title="tcp连接中一秒内接收多个数据会有重复并丢失">tcp连接中一秒内接收多个数据会有重复并丢失</a>
+  </div>
+</li>
+<li>
+  <div><a class="dark topic_title" href="/topic/590af7d8ee41dcb8037f8623" title="node.js 笔记">node.js 笔记</a>
+  </div>
+</li>
+<li>
+  <div><a class="dark topic_title" href="/topic/590af43111bdaf96035d8b8c" title="有什么模块能把一份 .ansi格式的CSV文件转换成 UTF-8 格式的CSV文件">有什么模块能把一份 .ansi格式的CSV文件转换成 UTF-8 格式的CSV文件</a>
+  </div>
+</li>
+
+      </ul>
+      
+    </div>
+  </div>
+</div>
+
+<div id="content">
+  <div class="panel">
+    <div class="header topic_header">
+      <span class="topic_full_title">
+        <%=data.topicname%>
+      </span>
+      <div class="changes">
+        <span>
+          发布于 几秒前
+        </span>
+        <span>
+          作者 <a href="/user/Mesea"><%=data.uid.username%></a>
+        </span>
+        <span>
+          <%=data.tid.ordernum%> 次浏览
+        </span>
+          <span> 来自 <%=data.tid.typename%></span>
+          <input class="span-common span-success pull-right collect_btn" type="submit" value="收藏" action="collect">
+        
+
+      </div>
+      
+      
+      
+    </div>
+    <div class="inner topic">
+
+      <div class="topic_content">
+        <div class="markdown-text"><p><%-data.content%></p>
+</div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="panel">
+    <div class="header">
+      <span class="col_fade"><%=replyData.length%> 回复</span>
+    </div>
+      <%replyData.forEach(function(item,index){%>
+      
+        <div class="cell reply_area reply_item
+        " reply_id="59106b369e32cc84569a6c67" reply_to_id="" id="59106b369e32cc84569a6c67">
+            <div class="author_content">
+              <a href="/user/ilovedesert001" class="user_avatar">
+              <img src="https://avatars1.githubusercontent.com/u/15065396?v=3&amp;s=120" title="ilovedesert001"></a>
+
+              <div class="user_info">
+                <a class="dark reply_author" href="#"><%=item.uid.username%></a>
+                <a class="reply_time" href="#"><%=item.floor%>楼•2 小时前</a>
+              </div>
+
+        </div>
+        <div class="reply_content">
+          <div class="markdown-text"><p><%-item.content%></p>
+          </div>
+        </div>
+     
+    </div>
+      <%})%>
+   
+  </div>
+  <div class="panel">
+    <div class="header">
+      <span class="col_fade">添加回复</span>
+    </div>
+    <div class="inner reply">
+
+
+      <form id="reply_form" action="/topic/reply" method="post">
+
+        <div class="markdown_editor in_editor">
+          <div class="markdown_in_editor">
+
+          <input type="hidden" name="tid" value="<%=data.id%>">
+          <!-- 就是当前话题的ID -->
+
+          <textarea required id="editor" name="content" style="min-height:200px"></textarea>
+        
+            <div class="editor_buttons">
+              <input class="span-primary submit_btn" type="submit"  value="回复">
+            </div>
+          </div>
+
+        </div>
+
+    
+      </form>
+
+
+
+    </div>
+  </div>
+  
+</div>
+
+<div class="replies_history" style="display: none;">
+  <div class="inner_content"></div>
+  <div class="anchor"></div>
+</div>
+
+<!-- 预览模态对话框 -->
+<div class="modal fade" id="preview-modal">
+  <div class="modal-body" style="max-height: initial;">
+    <img src="" alt="点击内容或者外部自动关闭图片预览" id="preview-image">
+  </div>
+</div>
+
+
+
+</div>
+<script>
+  var ue=UE.getEditor("editor");
+</script>
+<% include ../layout/footer.html%>

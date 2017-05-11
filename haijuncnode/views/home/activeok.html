@@ -1,0 +1,12 @@
+<% include ../layout/header.html%>
+
+<h1>邮箱验证成功,10秒钟之后跳转登陆,<a href="/users/login">直接登陆</a></h1>
+<script>
+  window.onload=function(){
+    setTimeout(function(){
+      location.href="/users/login";
+    },10000)
+  }
+</script>
+<% include ../layout/footer.html%>
+

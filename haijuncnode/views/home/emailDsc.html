@@ -1,0 +1,12 @@
+<% include ../layout/header.html%>
+
+<h1>邮件已经发送,请点击登陆激活账号,10秒钟之后跳转,<a href="/">返回首页</a></h1>
+<script>
+  window.onload=function(){
+    setTimeout(function(){
+      location.href="/";
+    },10000)
+  }
+</script>
+<% include ../layout/footer.html%>
+
