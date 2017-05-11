@@ -34,7 +34,7 @@ app.use(session({
   rolling:true,
   cookie:{
     // 用户活跃的保存时间
-    maxAge:1000*60*60,
+    maxAge:1000*60*60*24*7,
     path:'/'
   }
 }));
